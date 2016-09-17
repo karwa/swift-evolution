@@ -61,7 +61,7 @@ assert(anInstance.MyProtocol.aVariable != anInstance.AnotherProtocol.aVariable) 
 The compiler synthesizes a getter with the name of the protocol (TODO: should we always lowercase the first letter?). The return value of this getter is the protocol witness:
 
 ```swift
-    var MyProtocol : MyClass.MyProtocol { get }
+var MyProtocol : Any<MyProtocol> { get } // something which implements MyProtocol. Can't express that in Swift yet, so maybe some bogus metatype instead?
 ```
 
 One nice feature would be if this property were overridable, so that types which conform to a protocol may delegate to an optimised wrapper. This wrapper would have to meet certain requirements, such as preserving mutation guarantees for mutating members (needs documentation). Protocols do not impose a particular layout for your data, but they may inform how it is intended to be consumed and being able to manually optimise based on that information is important.
@@ -151,4 +151,5 @@ Despite the somewhat radical nature of the proposal, we can keep source-breaking
 ## Alternatives considered
 
 - Do nothing. Protocols must be careful never to step on the toes of any future future protocol which anybody may want to use together with themselves. That seems like a bit of a difficult limitation to live with for Swift as such a protocol-oriented language.
+- Shorthand: don't consider conformances added in extensions, so `[1, 2, 3].count` will always mean `[1, 2, 3].Collection.count` even if you add a protocol to Array which also defines `count`
 - How else could we disambiguate protocol references?
