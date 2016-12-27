@@ -1,7 +1,7 @@
 # Change (Dispatch)Data.`withUnsafeBytes` to use `UnsafeMutableBufferPointer`
 
 * Proposal: [SE-NNNN](NNNN-filename.md)
-* Authors: [Karl Wagner](https://github.com/karwa
+* Authors: [Karl Wagner](https://github.com/karwa)
 * Review Manager: TBD
 * Status: **Awaiting review**
 
