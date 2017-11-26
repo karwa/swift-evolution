@@ -2,14 +2,15 @@
 
 * Proposal: [SE-0105](0105-remove-where-from-forin-loops.md)
 * Author: [Erica Sadun](http://github.com/erica)
-* Status: **Active review June 22...29**
-* Review manager: [Chris Lattner](http://github.com/lattner)
+* Review Manager: [Chris Lattner](http://github.com/lattner)
+* Status: **Rejected**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-June/000199.html)
 
 ## Introduction
 
 This proposal removes `where` clauses from `for-in` loops, where they are better expressed (and read) as guard conditions.
 
-Swift Evolution Discussion: [\[Pitch\] Retiring `where` from for-in loops](http://thread.gmane.org/gmane.comp.lang.swift.evolution/20142)
+Swift Evolution Discussion: [\[Pitch\] Retiring `where` from for-in loops](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160606/020566.html)
 
 ## Motivation
 
@@ -25,7 +26,7 @@ public/core/Algorithm.swift:  for value in rest where value < minValue {
 public/core/Algorithm.swift:  for value in rest where value >= maxValue {
 ```
 
-I pulled down a random sample of popular Swift repositories from github and found one use of `for-in-where` among my sample vs over 650 `for-in` uses.
+I pulled down a random sample of popular Swift repositories from GitHub and found one use of `for-in-where` among my sample vs over 650 `for-in` uses.
 
 ```
 Carthage/Source/CarthageKit/Algorithms.swift: for (node, var incomingEdges) in workingGraph where incomingEdges.contains(lastSource) {
@@ -35,7 +36,7 @@ Carthage/Source/CarthageKit/Algorithms.swift: for (node, var incomingEdges) in w
 
 Consider the following two code snippets:
 
-```
+```swift
 print("for in")
 var theArray = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 for x in theArray where x % 2 == 1 { print (x) }
@@ -65,13 +66,13 @@ Removing where from for-in loops reduces cognitive burden when interpreting inte
 
 #### SE-0099
 
-Upon accepting [SE-0099](https://github.com/apple/swift-evolution/blob/master/proposals/0099-conditionclauses.md), the core team removed `where` clauses from condition clauses. The team wrote, "[T]he 'where' keyword can be retired from its purpose as a [B]oolean condition introducer." 
+Upon accepting [SE-0099](0099-conditionclauses.md), the core team removed `where` clauses from condition clauses. The team wrote, "[T]he 'where' keyword can be retired from its purpose as a [B]oolean condition introducer." 
 
 #### Malformed Grammar
 
 In Swift's current form, the where-clause in for-loops inconsistently applied. Unlike `switch` statements and `do` loops, a `for-in` loop's where-clause is separated from the pattern it modifies.
 
-```
+```swift
 for case? pattern in expression where-clause? code-block
 
 case-item-list → pattern where-clause? | pattern where-clause? , case-item-list

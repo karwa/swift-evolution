@@ -1,9 +1,11 @@
 # Declare variables in 'case' labels with multiple patterns 
 
-* Proposal: [SE-0043](https://github.com/apple/swift-evolution/blob/master/proposals/0043-declare-variables-in-case-labels-with-multiple-patterns.md)
+* Proposal: [SE-0043](0043-declare-variables-in-case-labels-with-multiple-patterns.md)
 * Author: [Andrew Bennett](https://github.com/therealbnut)
-* Status: **Accepted for Swift 3** ([Rationale](http://thread.gmane.org/gmane.comp.lang.swift.evolution/12827))
-* Review manager: [Chris Lattner](https://github.com/lattner)
+* Review Manager: [Chris Lattner](https://github.com/lattner)
+* Status: **Implemented (Swift 3)**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160321/013250.html)
+* Implementation: [apple/swift#1383](https://github.com/apple/swift/pull/1383)
 
 ## Introduction
 
@@ -31,7 +33,7 @@ The error is:
 
 This proposal aims to remove this error when each pattern declares the same variables with the same types.
 
-Swift-evolution thread: [here](http://thread.gmane.org/gmane.comp.lang.swift.evolution/4256)
+Swift-evolution thread: [here](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160118/007431.html)
 
 ## Motivation
 
@@ -121,7 +123,7 @@ This syntax is much more verbose, makes control flow more confusing, and has the
 
 In the above example `apply` cannot be `@noescape` because handleX captures it.
 
-Also in the above example if `out` is captured and assigned by `handleX` then it must be `var`, not `let`. This can produce shorter syntax, but is not as safe; `out` may accidentally be assigned more than once, additionally `out` also needs to be initialised (which may not be possible or desirable).
+Also in the above example if `out` is captured and assigned by `handleX` then it must be `var`, not `let`. This can produce shorter syntax, but is not as safe; `out` may accidentally be assigned more than once, additionally `out` also needs to be initialized (which may not be possible or desirable).
 
 ### Extending the fallthrough syntax
 

@@ -1,9 +1,12 @@
 # Defaulting non-Void functions so they warn on unused results
 
-* Proposal: [SE-0047](proposals/0047-nonvoid-warn.md)
+* Proposal: [SE-0047](0047-nonvoid-warn.md)
 * Authors: [Erica Sadun](http://github.com/erica), [Adrian Kashivskyy](https://github.com/akashivskyy)
-* Status: **Accepted (with [revisions](http://article.gmane.org/gmane.comp.lang.swift.evolution/12833))**
-* Review manager: [Chris Lattner](https://github.com/lattner)
+* Review Manager: [Chris Lattner](https://github.com/lattner)
+* Status: **Implemented (Swift 3)**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-March/000075.html)
+* Bug: [SR-1052](https://bugs.swift.org/browse/SR-1052)
+
 
 ## Introduction
 In Swift's current incarnation, annotating methods and functions with `@warn_unused_result` informs the compiler that a non-void return type *should be consumed*. It is an affirmative declaration. In its absence, ignored results do not raise warnings or errors.
@@ -17,7 +20,7 @@ public func sort() -> [Self.Generator.Element]
 
 This proposal flips this default behavior. Unused results are more likely to indicate programmer error than confusion between mutating and non-mutating function pairs. This proposal makes "warn on unused result" the *default* behavior for Swift methods and functions. Developers must override this default to enable the compiler to ignore unconsumed values.
 
-This proposal was discussed on-list in a variety of threads, most recently [Make non-void functions <at> warn_unused_result	by default](http://article.gmane.org/gmane.comp.lang.swift.evolution/8417).
+This proposal was discussed on-list in a variety of threads, most recently [Make non-void functions @warn_unused_result by default](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160222/010926.html).
 
 #### Acceptance Notes
 

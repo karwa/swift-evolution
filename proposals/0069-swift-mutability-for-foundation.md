@@ -1,10 +1,10 @@
 # Mutability and Foundation Value Types
 
-* Proposal: [SE-0069](https://github.com/apple/swift-evolution/blob/master/proposals/0069-swift-mutability-for-foundation.md)
-* Author: Tony Parker <anthony.parker@apple.com>
-* Status: **Accepted for Swift 3** ([Rationale](http://thread.gmane.org/gmane.comp.lang.swift.evolution/16114))
+* Proposal: [SE-0069](0069-swift-mutability-for-foundation.md)
+* Author: [Tony Parker](https://github.com/parkera)
 * Review Manager: [Chris Lattner](https://github.com/lattner)
-
+* Status: **Implemented (Swift 3)**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-May/000132.html)
 
 ## Introduction
 
@@ -14,7 +14,7 @@ One of the core principles of Swift is "mutability when you need it." This is es
 * [Building Better Apps with Value Types in Swift - WWDC 2015 (Doug Gregor)](https://developer.apple.com/videos/play/wwdc2015/414/)
 * [Swift Programming Language - Classes and Structures](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/ClassesAndStructures.html#//apple_ref/doc/uid/TP40014097-CH13-ID82)
 
-[Swift Evolution Discussion](http://thread.gmane.org/gmane.comp.lang.swift.evolution/15080), [Swift Evolution Review](http://thread.gmane.org/gmane.comp.lang.swift.evolution/15281)
+[Swift Evolution Discussion](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160418/015503.html), [Swift Evolution Review](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160425/015682.html)
 
 This concept is so important that it is literally the second thing taught in _The Swift Programming Language_, right after `print("Hello, world!")`:
 
@@ -22,7 +22,7 @@ This concept is so important that it is literally the second thing taught in _Th
 > 
 > Use `let` to make a constant and `var` to make a variable. The value of a constant doesn’t need to be known at compile time, but you must assign it a value exactly once.
 > 
-> __Excerpt From: Apple Inc. “[The Swift Programming Language (Swift 2.1).](https://itun.es/us/jEUH0.l__)__” 
+> __Excerpt From: Apple Inc. “[The Swift Programming Language (Swift 3.0.1).](https://itun.es/us/jEUH0.l)__” 
 
 When certain Foundation types are imported into Swift, they do not fully take advantage of the features that Swift has to offer developers for controlling mutability of their objects. 
 
@@ -470,7 +470,7 @@ Swift has an existing mechanism to support bridging of Swift struct types to Obj
 
 Bridged struct types adopt a compiler-defined protocol called `_ObjectiveCBridgeable`. This protocol defines methods that convert Swift to Objective-C and vice-versa [^objcbridge].
 
-[^objcbridge]: See also [SE-0058](https://github.com/apple/swift-evolution/blob/master/proposals/0058-objectivecbridgeable.md). Although the public version of the feature has been deferred from Swift 3, we will still use the internal mechanism for now.
+[^objcbridge]: See also [SE-0058](0058-objectivecbridgeable.md). Although the public version of the feature has been deferred from Swift 3, we will still use the internal mechanism for now.
 
 #### From Objective-C to Swift
 

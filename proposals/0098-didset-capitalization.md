@@ -2,15 +2,16 @@
 
 * Proposal: [SE-0098](0098-didset-capitalization.md)
 * Author: [Erica Sadun](https://github.com/erica)
-* Status: **Rejected** ([Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-June/000179.html))
-* Review manager: [Chris Lattner](http://github.com/lattner)
+* Review Manager: [Chris Lattner](http://github.com/lattner)
+* Status: **Rejected**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-June/000179.html)
 
 ## Introduction
 
 This proposal adopts consistent conjoined keyword lowercasing.
 
 Swift-evolution thread:
-[RFC: didset and willset](http://thread.gmane.org/gmane.comp.lang.swift.evolution/17534)
+[RFC: didset and willset](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160516/017959.html)
 
 ## Motivation
 

@@ -45,11 +45,16 @@ Please state explicitly whether you believe that the proposal should be accepted
 ## How to propose a change
 
 * **Check prior proposals**: many ideas come up frequently, and may either be in active discussion on the mailing list, or may have been discussed already and have joined the [Commonly Rejected Proposals](commonly_proposed.md) list.  Please check the mailing list archives and this list for context before proposing something new.
-
+* **Consider the goals of the upcoming Swift release**: Each major
+Swift release is focused on a [specific set of goals](README.md)
+described early in the release cycle. When proposing a change to
+Swift, please consider how your proposal fits in with the larger goals
+of the upcoming Swift release. Proposals that are clearly out of scope
+for the upcoming Swift release will not be brought up for review. If you can't resist discussing a proposal that you know is out of scope, please include the tag `[Out of scope]` in the subject.
 * **Socialize the idea**: propose a rough sketch of the idea on the [swift-evolution mailing list][swift-evolution-mailing-list], the problems it solves, what the solution looks like, etc., to gauge interest from the community.
-* **Develop the proposal**: expand the rough sketch into a complete proposal, using the [proposal template](0000-template.md), and continue to refine the proposal on the evolution mailing list. Prototyping an implementation and its uses along with the proposal is encouraged, because it helps ensure both technical feasibility of the proposal as well as validating that the proposal solves the problems it is meant to solve.
+* **Develop the proposal**: expand the rough sketch into a complete proposal, using the [proposal template](0000-template.md), and continue to refine the proposal on the evolution mailing list. Prototyping an implementation and its uses along with the proposal is *required* because it helps ensure both technical feasibility of the proposal as well as validating that the proposal solves the problems it is meant to solve.
 * **Request a review**: initiate a pull request to the [swift-evolution repository][swift-evolution-repo] to indicate to the core team that you would like the proposal to be reviewed. When the proposal is sufficiently detailed and clear, and addresses feedback from earlier discussions of the idea, the pull request will be accepted. The proposal will be assigned a proposal number as well as a core team member to manage the review.
-* **Address feedback**: in general, and especially [during the review period](#review), be responsive to questions and feedback about the proposal.
+* **Address feedback**: in general, and especially [during the review period][proposal-status], be responsive to questions and feedback about the proposal.
 
 ## Review process
 
@@ -82,31 +87,40 @@ repository][swift-evolution-repo] to reflect that decision.
 ## Proposal states
 A given proposal can be in one of several states:
 
-* **Awaiting review**: the proposal is awaiting review. Once known,
-  the dates for the actual review will be placed in the proposal
-  document and updated in the [review schedule](schedule.md). When the
-  review period begins, the review manager will update the state to
-  *under review*.
-* **Under review**: the proposal is undergoing public review on the [swift-evolution mailing list][swift-evolution-mailing-list]. 
-* **Under revision**: the proposal is undergoing revision by the
-  author(s) based on feedback from the review.
-* **Deferred**: consideration of the proposal has been deferred
+* **Awaiting review**: The proposal is awaiting review. Once known, the dates
+  for the actual review will be placed in the proposal document. When the review
+  period begins, the review manager will update the state to *Active review*.
+* **Scheduled for review (MONTH DAY...MONTH DAY)**: The public review of the proposal
+  on the [swift-evolution mailing list][swift-evolution-mailing-list]
+  has been scheduled for the specified date range.
+* **Active review (MONTH DAY...MONTH DAY)**: The proposal is undergoing public review
+  on the [swift-evolution mailing list][swift-evolution-mailing-list].
+  The review will continue through the specified date range.
+* **Returned for revision**: The proposal has been returned from review
+  for additional revision to the current draft.
+* **Withdrawn**: The proposal has been withdrawn by the original submitter.
+* **Deferred**: Consideration of the proposal has been deferred
   because it does not meet the [goals of the upcoming major Swift
   release](README.md). Deferred proposals will be reconsidered when
   scoping the next major Swift release.
-* **Accepted**: the proposal has been accepted and is either awaiting
-  implementation or is actively being implemented. Once a proposal
-  enters the "accepted" state, it gets placed into its [target Swift
-  release](README.md).
-* **Rejected**: the proposal has been considered and rejected.
+* **Accepted**: The proposal has been accepted and is either awaiting
+  implementation or is actively being implemented.
+* **Accepted with revisions**: The proposal has been accepted,
+  contingent upon the inclusion of one or more revisions.
+* **Rejected**: The proposal has been considered and rejected.
+* **Implemented (Swift VERSION)**: The proposal has been implemented.
+  Append the version number in parentheses—for example: Implemented (Swift 2.2).
+  If the proposal's implementation spans multiple version numbers,
+  write the version number for which the implementation will be complete.
 
 [swift-evolution-repo]: https://github.com/apple/swift-evolution  "Swift evolution repository"
 [swift-evolution-mailing-list]: https://swift.org/community/#swift-evolution  "Swift evolution mailing list"
+[proposal-status]: https://apple.github.io/swift-evolution/
 
 ## Review announcement
 
 When a proposal enters review, an email using the following template will be
-sent to the swift-evolution-announce and swift-evolution mailing lists:
+sent to the swift-evolution mailing list and BCC'd to the swift-evolution-announce mailing list:
 
 ---
 
@@ -115,7 +129,7 @@ Hello Swift community,
 The review of "\<\<PROPOSAL NAME>>" begins now and runs through \<\<REVIEW
 END DATE>>. The proposal is available here:
 
-> <https://github.com/apple/swift-evolution/blob/master/proposals/NNNN-proposal.md>
+> http://linkToProposal
 
 Reviews are an important part of the Swift evolution process. All reviews
 should be sent to the swift-evolution mailing list at

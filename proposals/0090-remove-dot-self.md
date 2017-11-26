@@ -2,8 +2,9 @@
 
 * Proposal: [SE-0090](0090-remove-dot-self.md)
 * Authors: [Joe Groff](https://github.com/jckarter), [Tanner Nelson](https://github.com/tannernelson)
-* Status: **Deferred from Swift 3** ([Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-May/000174.html))
-* Review manager: [Chris Lattner](http://github.com/lattner)
+* Review Manager: [Chris Lattner](http://github.com/lattner)
+* Status: **Deferred**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-May/000174.html)
 * Revision: 2
 
 ## Introduction
@@ -313,19 +314,9 @@ These are directions we rejected early on in the development of Swift, since
 we felt that maintaining familiarity with C-family languages was worth burning
 some implementation complexity.
 
--------------------------------------------------------------------------------
+## Revision history
 
-# Rationale
-
-On [Date], the core team decided to **(TBD)** this proposal.
-When the core team makes a decision regarding this proposal,
-their rationale for the decision will be written here.
-
--------------------------------------------------------------------------------
-
-# Revision history
-
-## May 26, 2016
+### May 26, 2016
 
 A previous revision of this proposal offered a default disambiguation rule
 for ambiguous type references without type context:

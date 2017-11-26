@@ -1,9 +1,10 @@
 # Updating Protocol Naming Conventions for Conversions
 
-* Proposal: [SE-00041](0041-conversion-protocol-conventions.md)
+* Proposal: [SE-0041](0041-conversion-protocol-conventions.md)
 * Authors: [Matthew Johnson](https://github.com/anandabits), [Erica Sadun](http://github.com/erica)
-* Status: **Rejected as written** ([Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-May/000160.html))
-* Review manager: [Chris Lattner](http://github.com/lattner)
+* Review Manager: [Chris Lattner](http://github.com/lattner)
+* Status: **Rejected**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-May/000160.html)
 
 ## Introduction
 
@@ -150,7 +151,7 @@ particularly similar to one another.
 
 **Our Response**
 
-The semantics cover "converting to a type", "converting from a type", and "converting to and from a type". We have examples from our own code and from third party code on github that suggest conversion tasks are common enough that standardizing API naming conventions will be valuable.
+The semantics cover "converting to a type", "converting from a type", and "converting to and from a type". We have examples from our own code and from third party code on GitHub that suggest conversion tasks are common enough that standardizing API naming conventions will be valuable.
 
 ## Updated Approach
 

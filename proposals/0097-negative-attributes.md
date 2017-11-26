@@ -2,8 +2,9 @@
 
 * Proposal: [SE-0097](0097-negative-attributes.md)
 * Author: [Erica Sadun](https://github.com/erica)
-* Status: **Rejected** ([Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-June/000181.html))
-* Review manager: [Chris Lattner](http://github.com/lattner)
+* Review Manager: [Chris Lattner](http://github.com/lattner)
+* Status: **Rejected**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-June/000181.html)
 
 ## Introduction
 
@@ -12,7 +13,7 @@ that replaces property names starting with `no` with adjectives
 starting with `non`. 
 
 Swift-evolution thread:
-[RFC: didset and willset](http://thread.gmane.org/gmane.comp.lang.swift.evolution/17534)
+[RFC: didset and willset](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160516/017959.html)
 
 ## Motivation
 

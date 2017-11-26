@@ -1,17 +1,21 @@
 # Replace `protocol<P1,P2>` syntax with `P1 & P2` syntax
 
 * Proposal: [SE-0095](0095-any-as-existential.md)
-* Author: [Adrian Zubarev](https://github.com/DevAndArtist), [Austin Zheng](https://github.com/austinzheng)
-* Status: **Active review June 22...27**
-* Review manager: [Chris Lattner](http://github.com/lattner)
-* Revision: 2
-* Previous Revisions: [1](https://github.com/apple/swift-evolution/blob/a4356fee94c06181715fad83aa61e923eb73f8ec/proposals/0095-any-as-existential.md)
+* Authors: [Adrian Zubarev](https://github.com/DevAndArtist), [Austin Zheng](https://github.com/austinzheng)
+* Review Manager: [Chris Lattner](http://github.com/lattner)
+* Status: **Implemented (Swift 3)**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-June/000198.html)
+* Bug: [SR-1938](https://bugs.swift.org/browse/SR-1938)
+* Previous Revision: [1](https://github.com/apple/swift-evolution/blob/a4356fee94c06181715fad83aa61e923eb73f8ec/proposals/0095-any-as-existential.md)
 
 ## Introduction
 
 The current `protocol<>` construct, which defines an existential type consisting of zero or more protocols, should be replaced by an infix `&` type operator joining bare protocol type names.
 
-Discussion threads: [pre-proposal](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160516/018109.html), [review thread 1](http://thread.gmane.org/gmane.comp.lang.swift.evolution/18349), [2](http://thread.gmane.org/gmane.comp.lang.swift.evolution/18350/focus=18447), [3](http://thread.gmane.org/gmane.comp.lang.swift.evolution/18351/focus=18440), [4](http://thread.gmane.org/gmane.comp.lang.swift.evolution/18518), [post-review thread](http://thread.gmane.org/gmane.comp.lang.swift.evolution/19463)
+Discussion threads: 
+[pre-proposal](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160516/018109.html), 
+[review thread 1](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160620/021713.html),
+[return for revision thread](https://lists.swift.org/pipermail/swift-evolution-announce/2016-June/000182.html)
 
 ## Motivation
 
@@ -70,10 +74,3 @@ The original proposal suggested replacing `protocol<>` with either `Any<>` or `a
 
 [Matthew Johnson](https://github.com/anandabits) and [Brent Royal-Gordon](https://github.com/brentdax) provided valuable input which helped shape the first version of this proposal.
 
--------------------------------------------------------------------------------
-
-# Rationale
-
-On [Date], the core team decided to **(TBD)** this proposal.
-When the core team makes a decision regarding this proposal,
-their rationale for the decision will be written here.

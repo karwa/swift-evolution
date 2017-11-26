@@ -2,8 +2,9 @@
 
 * Proposal: [SE-0074](0074-binary-search.md)
 * Authors: [Lorenzo Racca](https://github.com/lorenzoracca), [Jeff Hajewski](https://github.com/j-haj), [Nate Cook](https://github.com/natecook1000)
-* Status: **Rejected for Swift 3** ([Rationale](#rationale))
-* Review manager: [Chris Lattner](http://github.com/lattner)
+* Review Manager: [Chris Lattner](http://github.com/lattner)
+* Status: **Rejected**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-May/000148.html)
 
 ## Introduction
 
@@ -192,7 +193,7 @@ extension Collection {
 
 ## Example usage
 
-As an example of how the `partitionedIndex(of:)` method enables heterogenous binary search, this `SortedDictionary` type uses an array of `(Word, Definition)` tuples as its storage, sorted by `Word`.
+As an example of how the `partitionedIndex(of:)` method enables heterogeneous binary search, this `SortedDictionary` type uses an array of `(Word, Definition)` tuples as its storage, sorted by `Word`.
 
 Better explained examples can be found in the Swift playground available [here to download](https://github.com/lorenzoracca/Swift-binary-search/blob/binarysearch/Binary%20Search%20Proposal.playground.zip).
 
@@ -277,10 +278,6 @@ The authors considered a few alternatives to the current proposal:
 
 - `binary_search`: The STL function analogous to the proposed `sortedIndex(of:)` method returns only a Boolean value. We determined that a method returning an optional index was more useful: the `.none` case conveys "not found", and the returned index (when found) provides easy access to the matched element.
 
-# Rationale
+## Rationale
 
-On May 11, 2016, the core team decided to **Reject** this proposal ([thread](http://thread.gmane.org/gmane.comp.lang.swift.evolution/16897)).  The
-feedback on the proposal was generally positive about the concept of adding
-binary search functionality, but  negative about the proposal as written, with
-feedback that it was adding too much complexity to the API.
-
+On [May 11, 2016](https://lists.swift.org/pipermail/swift-evolution-announce/2016-May/000148.html), the core team decided to **Reject** this proposal.  The feedback on the proposal was generally positive about the concept of adding binary search functionality, but  negative about the proposal as written, with feedback that it was adding too much complexity to the API.

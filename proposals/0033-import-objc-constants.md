@@ -1,15 +1,18 @@
 # Import Objective-C Constants as Swift Types
 
-* Proposal: [SE-0033](https://github.com/apple/swift-evolution/blob/master/proposals/0033-import-objc-constants.md)
+* Proposal: [SE-0033](0033-import-objc-constants.md)
 * Author: [Jeff Kelley](https://github.com/SlaunchaMan)
-* Status: **Implemented in Swift 3** ([Rationale](http://thread.gmane.org/gmane.comp.lang.swift.evolution/8817))
-* Review manager: [John McCall](https://github.com/rjmccall)
+* Review Manager: [John McCall](https://github.com/rjmccall)
+* Status: **Implemented (Swift 3)**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160307/011996.html)
 
 ## Introduction
 
 Given a list of constants in an Objective-C file, add an attribute that will enable Swift to import them as either an Enum or a Struct, using `RawRepresentable` to convert to their original type. This way, instead of passing strings around for APIs, we can use more type-safe objects and take advantage of Swift’s code completion, as well as making our Swift (and Objective-C!) code more readable and more approachable to beginners.
 
 Swift-evolution thread: [Original E-Mail](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160111/006893.html), [Replies](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160118/006904.html)
+
+[Review](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160215/010625.html)
 
 ## Motivation
 

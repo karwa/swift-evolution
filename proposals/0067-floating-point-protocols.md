@@ -1,10 +1,11 @@
 # Enhanced Floating Point Protocols
 
-* Proposal: [SE-0067](https://github.com/apple/swift-evolution/blob/master/proposals/0067-floating-point-protocols.md)
+* Proposal: [SE-0067](0067-floating-point-protocols.md)
 * Author: [Stephen Canon](https://github.com/stephentyrone)
-* Status: **Accepted for Swift 3** ([Rationale](http://thread.gmane.org/gmane.comp.lang.swift.evolution/15953))
-* Review manager: [Chris Lattner](https://github.com/lattner)
-* Revision: 2
+* Review Manager: [Chris Lattner](https://github.com/lattner)
+* Status: **Implemented (Swift 3)**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-May/000121.html)
+* Implementation: [apple/swift#2453](https://github.com/apple/swift/pull/2453)
 * Previous Revision: [1](https://github.com/apple/swift-evolution/blob/fb1368a6a5474f57aa8f1846b5355d18753098f3/proposals/0067-floating-point-protocols.md)
 
 ## Introduction
@@ -24,7 +25,9 @@ Revision 2 also incorporates a number of suggestions from the review list and
 corrects some typos; thanks especially to Xiaodi Wu for thoughtful feedback.
 Consult the changelog at the end of this document for full details.
 
-[Proposal draft](http://thread.gmane.org/gmane.comp.lang.swift.evolution/14545), [Review](http://thread.gmane.org/gmane.comp.lang.swift.evolution/14876)
+* [Proposal draft](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160411/014969.html)
+* [Review #1](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160418/015300.html)
+* [Review #2](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160425/015733.html)
 
 ## Motivation
 
@@ -185,7 +188,7 @@ public protocol FloatingPoint: Comparable, IntegerLiteralConvertible, SignedNumb
   /// This quantity, or a related quantity is sometimes called "epsilon" or
   /// "machine epsilon".  We avoid that name because it has different meanings
   /// in different languages, which can lead to confusion, and because it
-  /// suggests that it is an good tolerance to use for comparisons,
+  /// suggests that it is a good tolerance to use for comparisons,
   /// which is almost never is.
   ///
   /// (See https://en.wikipedia.org/wiki/Machine_epsilon for more detail)
@@ -446,7 +449,7 @@ public protocol FloatingPoint: Comparable, IntegerLiteralConvertible, SignedNumb
   @warn_unused_result
   func isLessThanOrEqualTo(_ other: Self) -> Bool
 
-  /// True if and only if `self` preceeds `other` in the IEEE 754 total order
+  /// True if and only if `self` precedes `other` in the IEEE 754 total order
   /// relation.
   ///
   /// This relation is a refinement of `<=` that provides a total order on all
@@ -759,7 +762,7 @@ and `isNaN`.
 ## Changes from the draft proposal
 
 1. Removed the `Arithmetic` protocol; it may be circulated again in the future
-as an independent proposal, or as part of an new model for integers.
+as an independent proposal, or as part of a new model for integers.
 
 2. Removed the `add[ing]`, `subtract[ing]`, etc methods, which were hooks for
 `Arithmetic`.  This proposal now includes only the existing operator forms.
@@ -804,3 +807,7 @@ suggestions on how to handle this case.
 types with stupendously large range.
 
 9. Fixed (some) typos.
+
+## Implementation status
+
+Everything that does not depend on [SE-0104](0104-improved-integers.md) is implemented.  Some related operations were added in [SE-0113](0113-rounding-functions-on-floatingpoint.md).

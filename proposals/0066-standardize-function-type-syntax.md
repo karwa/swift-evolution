@@ -1,9 +1,11 @@
 # Standardize function type argument syntax to require parentheses
 
-* Proposal: [SE-0066](https://github.com/apple/swift-evolution/blob/master/proposals/0066-standardize-function-type-syntax.md)
+* Proposal: [SE-0066](0066-standardize-function-type-syntax.md)
 * Author: [Chris Lattner](https://github.com/lattner)
-* Status: **Accepted for Swift 3** ([Rationale](#rationale))
-* Review manager: [Doug Gregor](https://github/com/DougGregor)
+* Review Manager: [Doug Gregor](https://github.com/DougGregor)
+* Status: **Implemented (Swift 3)**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-May/000138.html)
+* Implementation: [apple/swift@3d2b5bc](https://github.com/apple/swift/commit/3d2b5bcc5350e1dea2ed8a0a95cd12ff5c760f24)
 
 ## Introduction
 
@@ -72,10 +74,45 @@ list now (varargs, default args, internal vs API labels, etc), we removed
 implicit tuple splat, and the compiler has long ago stopped modeling function 
 parameters this way.
 
-## Proposed solution and Impact on existing code
+## Proposed solution
 
-Just require parentheses on function types.  The migrator will automatically
-add them to existing code when moving from Swift 2 to Swift 3.
+Parentheses will be required in function types. Examples:
+
+```swift
+Int -> Int           // error
+(Int) -> Int         // function from Int to Int
+((Int)) -> Int       // also function from Int to Int
+
+Int, Int -> Int      // error
+(Int, Int) -> Int    // function from Int and Int to Int
+((Int, Int)) -> Int  // function from tuple (Int, Int) to Int
+
+let f: () -> Int     // function with no parameters
+let g: (()) -> Int   // function taking a single () parameter
+let h: ((())) -> Int // function taking a single () parameter
+
+f();   g(()); h(())  // correct
+f(()); g();   h()    // errors
+```
+
+### Function type grammar
+
+Parentheses will become a part of function type grammar:
+
+*function-type* → `(` *function-type-parameters*<sub>opt</sub> `)` *throws-annotation*<sub>opt</sub> `->` *type*
+
+*function-type-parameters* → *function-type-parameter* `,` *function-type-parameters*
+
+*function-type-parameters* → *function-type-parameter* `...`<sub>opt</sub>
+
+*function-type-parameter* → *attributes*<sub>opt</sub> `inout`<sub>opt</sub> *type*
+
+*throws-annotation* → *throws* | *rethrows*
+
+## Impact on existing code
+
+The migrator will automatically add parentheses to existing code when moving
+from Swift 2 to Swift 3.
 
 ## Related questions
 
@@ -158,10 +195,3 @@ much more common, and is unaffected by this proposal), so it is not worth
 deploying sugar to syntax optimize.  If Swift 1 required parentheses on
 function types, we would almost certainly reject a proposal to syntax optimize
 them away.
-
-
--------------------------------------------------------------------------------
-
-# Rationale
-
-On May 5, 2016, the core team decided to **accept** this proposal ([thread](http://thread.gmane.org/gmane.comp.lang.swift.evolution/16245)).

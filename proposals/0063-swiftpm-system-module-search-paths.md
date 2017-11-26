@@ -1,10 +1,11 @@
 # SwiftPM System Module Search Paths
 
-* Proposal: [SE-0063](https://github.com/apple/swift-evolution/blob/master/proposals/0063-swiftpm-system-module-search-paths.md)
+* Proposal: [SE-0063](0063-swiftpm-system-module-search-paths.md)
 * Author: [Max Howell](https://github.com/mxcl)
-* Status: **Accepted for Swift 3** ([Rationale](http://thread.gmane.org/gmane.comp.lang.swift.evolution/14638))
-* Review manager: [Anders Bertelrud](https://github.com/abertelrud)
-
+* Review Manager: [Anders Bertelrud](https://github.com/abertelrud)
+* Status: **Implemented (Swift 3)**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-April/000103.html)
+* Implementation: [apple/swift-package-manager#257](https://github.com/apple/swift-package-manager/pull/257)
 
 ## Introduction
 
@@ -135,7 +136,7 @@ parameters, they can be added on a per enum basis.
 `apt` is used across multiple distirbutions and the install-names for
 tools vary. Even for the same distribution install-names may vary
 across releases (eg. from Ubuntu 15.04 to Ubuntu 15.10) or even on
-ocassion at finer granularity.
+occasion at finer granularity.
 
 We will not add explicit handling for this, but one can imagine the
 enums for different system packagers could be supplemented in a backwards

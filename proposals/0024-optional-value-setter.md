@@ -1,9 +1,10 @@
 # Optional Value Setter `??=`
 
-* Proposal: [SE-0024](https://github.com/apple/swift-evolution/blob/master/proposals/0024-optional-value-setter.md)
+* Proposal: [SE-0024](0024-optional-value-setter.md)
 * Author: [James Campbell](https://github.com/jcampbell05)
-* Status: **Rejected** ([Rationale](http://article.gmane.org/gmane.comp.lang.swift.evolution/7694))
-* Review manager: [Doug Gregor](https://github.com/DougGregor)
+* Review Manager: [Doug Gregor](https://github.com/DougGregor)
+* Status: **Rejected**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-February/000043.html)
 
 ## Introduction
 

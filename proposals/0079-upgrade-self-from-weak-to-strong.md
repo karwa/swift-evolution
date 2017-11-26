@@ -2,8 +2,8 @@
 
 * Proposal: [SE-0079](0079-upgrade-self-from-weak-to-strong.md)
 * Author: [Evan Maloney](https://github.com/emaloney)
-* Status: **Awaiting Review**
-* Review manager: TBD
+* Review Manager: TBD
+* Status: **Deferred**
 
 ## Introduction
 
@@ -34,8 +34,6 @@ When it comes time to execute this closure, the `guard` statement effectively as
 If `self` *is* still alive, then the weakly-captured `self` will be non-`nil` and it will be converted into a strong reference held by `strongSelf` for the duration of the closure’s execution.
 
 When the closure finishes, `strongSelf` goes away, once again making the view controller represented by `self` eligible for deallocation if no other references are held.
-
-[Swift Evolution Discussion Thread](http://thread.gmane.org/gmane.comp.lang.swift.evolution/7582), [Draft Proposal](http://thread.gmane.org/gmane.comp.lang.swift.evolution/6064)
 
 ## The Problem
 

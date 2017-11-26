@@ -2,9 +2,11 @@
 
 * Proposal: [SE-0068](0068-universal-self.md)
 * Author: [Erica Sadun](http://github.com/erica)
-* Status: **Accepted with modification** ([Rationale]((#rationale)), [Bug](https://bugs.swift.org/browse/SR-1340))
-* Review manager: [Chris Lattner](http://github.com/lattner)
-* Previous versions: [Review version](https://github.com/apple/swift-evolution/blob/13d9771e86c5639b8320f05e5daa31a62bac0f07/proposals/0068-universal-self.md), [Original version with `#Self` included](https://github.com/apple/swift-evolution/blob/bcd77b028cb2fc9f07472532b120e927c7e48b34/proposals/0068-universal-self.md)
+* Review Manager: [Chris Lattner](http://github.com/lattner)
+* Status: **Accepted with revisions**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160425/015977.html)
+* Bug: [SR-1340](https://bugs.swift.org/browse/SR-1340)
+* Previous Revisions: [1](https://github.com/apple/swift-evolution/blob/bcd77b028cb2fc9f07472532b120e927c7e48b34/proposals/0068-universal-self.md), [2](https://github.com/apple/swift-evolution/blob/13d9771e86c5639b8320f05e5daa31a62bac0f07/proposals/0068-universal-self.md)
 
 ## Introduction
 
@@ -13,7 +15,7 @@ by renaming `dynamicType` to `Self`. This establishes a universal and consistent
 way to refer to the dynamic type of the current receiver. 
 
 
-*This proposal was discussed on the Swift Evolution list in the [\[Pitch\] Adding a Self type name shortcut for static member access](http://thread.gmane.org/gmane.comp.lang.swift.evolution/13708/focus=13712) thread.*
+*This proposal was discussed on the Swift Evolution list in the [\[Pitch\] Adding a Self type name shortcut for static member access](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160404/014132.html) thread.*
 
 ## Motivation
 
@@ -22,7 +24,7 @@ a static member or passing types for unsafe bitcasts, among other uses.
 You can either specify a type by its full name or use `self.dynamicType`
 to access an instance's dynamic runtime type as a value. 
 
-```
+```swift
 struct MyStruct {
     static func staticMethod() { ... }
     func instanceMethod() {
@@ -56,9 +58,7 @@ Not at this time
 
 Thanks Sean Heber, Kevin Ballard, Joe Groff, Timothy Wood, Brent Royal-Gordon, Andrey Tarantsov, Austin Zheng
 
---------------------------------------------------------------------------------
-
-# Rationale
+## Rationale
 
 On [April 27, 2016](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160425/015977.html), the core team decided to **accept a subset of** this proposal.
 

@@ -1,15 +1,17 @@
 # Distinguish between single-tuple and multiple-argument function types
 
 * Proposal: [SE-0110](0110-distingish-single-tuple-arg.md)
-* Authors: Vladimir S., Austin Zheng
-* Status: **Awaiting review**
-* Review manager: [Chris Lattner](http://github.com/lattner)
+* Authors: Vladimir S., [Austin Zheng](https://github.com/austinzheng)
+* Review Manager: [Chris Lattner](https://github.com/lattner)
+* Status: **Deferred**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-July/000215.html), [Additional Commentary](https://lists.swift.org/pipermail/swift-evolution-announce/2017-June/000386.html)
+* Bug: [SR-2008](https://bugs.swift.org/browse/SR-2008)
 
 ## Introduction
 
 Swift's type system should properly distinguish between functions that take one tuple argument, and functions that take multiple arguments.
 
-Discussion: [pre-proposal](http://thread.gmane.org/gmane.comp.lang.swift.evolution/21732)
+Discussion: [pre-proposal](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160620/021793.html)
 
 ## Motivation
 
@@ -27,7 +29,7 @@ let fn2 : (Int, Int) -> Void = { x, y in
 }
 ```
 
-A variable of function type where there exist _n_ parameters (where _n_ > 1) can be assigned a value (whether it be a named function, a closure literal, or other acceptable value) which either takes in _n_ parameters, or one tuple containing _n_ elements. This seems to be an artifact of the tuple splat behavior removed in [SE-0029](https://github.com/apple/swift-evolution/blob/master/proposals/0029-remove-implicit-tuple-splat.md).
+A variable of function type where there exist _n_ parameters (where _n_ > 1) can be assigned a value (whether it be a named function, a closure literal, or other acceptable value) which either takes in _n_ parameters, or one tuple containing _n_ elements. This seems to be an artifact of the tuple splat behavior removed in [SE-0029](0029-remove-implicit-tuple-splat.md).
 
 The current behavior violates the principle of least surprise and weakens type safety, and should be changed.
 

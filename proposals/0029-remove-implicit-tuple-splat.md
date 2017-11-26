@@ -1,9 +1,11 @@
 # Remove implicit tuple splat behavior from function applications
 
-* Proposal: [SE-0029](https://github.com/apple/swift-evolution/blob/master/proposals/0029-remove-implicit-tuple-splat.md)
+* Proposal: [SE-0029](0029-remove-implicit-tuple-splat.md)
 * Author: [Chris Lattner](http://github.com/lattner)
-* Status: **Accepted** ([Rationale](http://thread.gmane.org/gmane.comp.lang.swift.evolution/6405))
-* Review manager: [Joe Groff](http://github.com/jckarter)
+* Review Manager: [Joe Groff](http://github.com/jckarter)
+* Status: **Implemented (Swift 3)**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-February/000033.html)
+* Implementation: [apple/swift@8e12008](https://github.com/apple/swift/commit/8e12008d2b34a605f8766310f53d5668f3d50955)
 
 ## Introduction
 

@@ -2,9 +2,10 @@
 
 * Proposal: [SE-0055](0055-optional-unsafe-pointers.md)
 * Author: [Jordan Rose](https://github.com/jrose-apple)
-* Status: **Accepted for Swift 3** ([Rationale](http://thread.gmane.org/gmane.comp.lang.swift.evolution/13511))
-* Review manager: [Chris Lattner](https://github.com/lattner)
-
+* Review Manager: [Chris Lattner](https://github.com/lattner)
+* Status: **Implemented (Swift 3)**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-March/000086.html)
+* Implementation: [apple/swift#1878](https://github.com/apple/swift/pull/1878)
 
 ## Introduction
 
@@ -176,7 +177,7 @@ for this proposal.)
   pointer as an Int is the best alternative; Int has the same C variadic
   calling conventions as a pointer on all supported platforms.
 
-[SE-0016]: https://github.com/apple/swift-evolution/blob/master/proposals/0016-initializers-for-converting-unsafe-pointers-to-ints.md
+[SE-0016]: 0016-initializers-for-converting-unsafe-pointers-to-ints.md
 
 ### Conversion between pointers
 

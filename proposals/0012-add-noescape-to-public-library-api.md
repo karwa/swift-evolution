@@ -1,9 +1,10 @@
 # Add `@noescape` to public library API
 
-* Proposal: [SE-0012](https://github.com/apple/swift-evolution/blob/master/proposals/0012-add-noescape-to-public-library-api.md)
+* Proposal: [SE-0012](0012-add-noescape-to-public-library-api.md)
 * Author: [Jacob Bandes-Storch](https://github.com/jtbandes)
-* Status: **Rejected** swift-evolution isn't the right process [Rationale](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160530/019902.html)
-* Review champion: [Philippe Hausler](https://github.com/phausler)
+* Review Manager: [Philippe Hausler](https://github.com/phausler)
+* Status: **Rejected**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160530/019902.html)
 
 ##### Revision history
 
@@ -17,7 +18,7 @@
 *  We propose exposing this attribute in CF and Foundation as `CF_NOESCAPE` and `NS_NOESCAPE`
 *  We also propose applying this declaration to a number of closure-taking APIs in CF and Foundation 
 
-[Swift Evolution Discussion Thread](http://thread.gmane.org/gmane.comp.lang.swift.corelibs/53)
+[Swift Evolution Discussion Thread](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160201/009270.html)
 
 ## Introduction
 

@@ -1,9 +1,11 @@
 # Add a Lazy flatMap for Sequences of Optionals #
 
-* Proposal: [SE-0008](https://github.com/apple/swift-evolution/blob/master/proposals/0008-lazy-flatmap-for-optionals.md)
+* Proposal: [SE-0008](0008-lazy-flatmap-for-optionals.md)
 * Author: [Oisin Kidney](https://github.com/oisdk)
-* Status: **Accepted** ([Rationale](http://thread.gmane.org/gmane.comp.lang.swift.evolution/1243), [Bug](https://bugs.swift.org/browse/SR-361))
 * Review Manager: [Doug Gregor](https://github.com/DougGregor)
+* Status: **Implemented (Swift 3)**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20151221/004418.html)
+* Bug: [SR-361](https://bugs.swift.org/browse/SR-361)
 
 ## Introduction ##
 
@@ -37,7 +39,7 @@ However, there is only a lazy implementation for the first version:
 // [1, 2, 3, 4, 5]
 ```
 
-Swift Evolution Discussions: [Lazy flatMap for Optionals](http://thread.gmane.org/gmane.comp.lang.swift.evolution/9365), [Review](http://thread.gmane.org/gmane.comp.lang.swift.evolution/11423)
+Swift Evolution Discussions: [Lazy flatMap for Optionals](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20151130/000534.html), [Review](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20151214/002592.html)
 
 ## Motivation ##
 

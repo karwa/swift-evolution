@@ -2,16 +2,17 @@
 
 * Proposal: [SE-0099](0099-conditionclauses.md)
 * Authors: [Erica Sadun](https://github.com/erica), [Chris Lattner](https://github.com/lattner)
-* Status: **Accepted** ([Rationale](#rationale))
-* Review manager: [Joe Groff](https://github.com/jckarter)
-* Previous Revision [1](https://github.com/apple/swift-evolution/blob/83053c5f5395987caf2ecb3830a5cd8dc6213237/proposals/0099-conditionclauses.md)
+* Review Manager: [Joe Groff](https://github.com/jckarter)
+* Status: **Implemented (Swift 3)**
+* Decision Notes: [Rationale](#rationale)
+* Previous Revision: [1](https://github.com/apple/swift-evolution/blob/83053c5f5395987caf2ecb3830a5cd8dc6213237/proposals/0099-conditionclauses.md)
 
 ## Introduction
 
 Swift condition clauses appear in `guard`, `if`, and `while` statements. This proposal re-architects the condition grammar to enable an arbitrary mix of Boolean expressions, `let` conditions (which test and unwrap optionals), general `case` clauses for arbitrary pattern matching, and availability tests.  It removes `where` clauses from optional binding conditions and case conditions, and eliminates gramatical ambiguity by using commas for separation between clauses instead of using them both to separate clauses and terms within each clause.  These modifications streamline Swift's syntax and alleviate the situation where many Swift developers don't know they can use arbitrary Boolean conditions after a value binding.
 
 Swift-evolution thread:
-[\[Pitch\] making where and ,	interchangeable in guard conditions](http://thread.gmane.org/gmane.comp.lang.swift.evolution/17926)
+[\[Pitch\] making where and ,	interchangeable in guard conditions](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160516/018352.html)
 
 ## Motivation
 
@@ -128,9 +129,7 @@ Another version retained commas and where clauses but allowed arbitrary ordering
 
 Another version suggested separating clauses with semicolons and newlines.
 
------------------------------------------
-
-# Rationale
+## Rationale
 
 On June 8, 2016, this proposal was **accepted with revision** for Swift 3.
 There was near unanimous agreement that the Swift 2 grammar was inconsistent

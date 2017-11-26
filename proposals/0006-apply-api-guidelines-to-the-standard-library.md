@@ -1,18 +1,22 @@
 # Apply API Guidelines to the Standard Library
 
-* Proposal: [SE-0006](https://github.com/apple/swift-evolution/blob/master/proposals/0006-apply-api-guidelines-to-the-standard-library.md)
+* Proposal: [SE-0006](0006-apply-api-guidelines-to-the-standard-library.md)
 * Authors: [Dave Abrahams](https://github.com/dabrahams), [Dmitri Gribenko](https://github.com/gribozavr), [Maxim Moiseev](https://github.com/moiseev)
-* Status: **Accepted** ([Rationale](http://thread.gmane.org/gmane.comp.lang.swift.evolution/8586))
-* Review manager: [Doug Gregor](https://github.com/DougGregor)
+* Review Manager: [Doug Gregor](https://github.com/DougGregor)
+* Status: **Implemented (Swift 3)**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-March/000054.html)
 
 ## Reviewer notes
 
 This review is part of a group of three related reviews, running
 concurrently:
 
-* [SE-0023 API Design Guidelines](https://github.com/apple/swift-evolution/blob/master/proposals/0023-api-guidelines.md)
-* [SE-0006 Apply API Guidelines to the Standard Library](https://github.com/apple/swift-evolution/blob/master/proposals/0006-apply-api-guidelines-to-the-standard-library.md)
-* [SE-0005 Better Translation of Objective-C APIs Into Swift](https://github.com/apple/swift-evolution/blob/master/proposals/0005-objective-c-name-translation.md)
+* [SE-0023 API Design Guidelines](0023-api-guidelines.md)
+  ([Review](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160118/007353.html))
+* [SE-0006 Apply API Guidelines to the Standard Library](0006-apply-api-guidelines-to-the-standard-library.md)
+  ([Review](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160118/007354.html))
+* [SE-0005 Better Translation of Objective-C APIs Into Swift](0005-objective-c-name-translation.md)
+  ([Review](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160118/007355.html))
 
 These reviews are running concurrently because they interact strongly
 (e.g., an API change in the standard library will correspond to a
@@ -177,6 +181,9 @@ is used are implied.
 
 -public protocol MirrorPathType { ... }
 +public protocol MirrorPath { ... }
+
+-public protocol ErrorType { ... }
++public protocol ErrorProtocol { ... }
 ```
 
 * The concept of "generator" is renamed to "iterator" across all APIs.
@@ -201,9 +208,6 @@ is used are implied.
 
 -public struct EmptyGenerator<Element> : ... { ... }
 +public struct EmptyIterator<Element> : ... { ... }
-
--public protocol ErrorType { ... }
-+public protocol ErrorProtocol { ... }
 
 -public struct AnyGenerator<Element> : ... { ... }
 +public struct AnyIterator<Element> : ... { ... }

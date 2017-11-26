@@ -1,12 +1,11 @@
 # Swift Testing
 
-* Proposal: [SE-0019](https://github.com/apple/swift-evolution/blob/master/proposals/0019-package-manager-testing.md)
-* Authors:
-  [Max Howell](https://github.com/mxcl),
-  [Daniel Dunbar](https://github.com/ddunbar),
-  [Mattt Thompson](https://github.com/mattt)
-* Status: **Accepted** ([Rationale](http://thread.gmane.org/gmane.comp.lang.swift.evolution/4103), [Bug](https://bugs.swift.org/browse/SR-592))
-* Review Manager: Rick Ballard
+* Proposal: [SE-0019](0019-package-manager-testing.md)
+* Authors: [Max Howell](https://github.com/mxcl), [Daniel Dunbar](https://github.com/ddunbar), [Mattt Thompson](https://github.com/mattt)
+* Review Manager: [Rick Ballard](https://github.com/rballard)
+* Status: **Implemented (Swift 3)**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160118/007278.html)
+* Bug: [SR-592](https://bugs.swift.org/browse/SR-592)
 
 ## Introduction
 
@@ -14,12 +13,12 @@ Testing is an essential part of modern software development.
 Tight integration of testing into the Swift Package Manager
 will help ensure a stable and reliable packaging ecosystem.
 
-[SE Review Link](http://thread.gmane.org/gmane.comp.lang.swift.evolution/3583)
+[SE Review Link](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160104/005397.html), [Second Review](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160111/006758.html)
 
 ## Proposed Solution
 
 We propose to extend our conventional package directory layout
-to accomodate test modules.
+to accommodate test modules.
 Any subdirectory of the package root directory named "Tests"
 or any subdirectory of an existing module directory named "Tests"
 will comprise a test module.

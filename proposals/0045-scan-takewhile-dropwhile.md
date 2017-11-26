@@ -2,14 +2,11 @@
 
 * Proposal: [SE-0045](0045-scan-takewhile-dropwhile.md)
 * Author: [Kevin Ballard](https://github.com/kballard)
-* Status: **Accepted for Swift 3** ([Rationale](http://thread.gmane.org/gmane.comp.lang.swift.evolution/16119), [Bug](https://bugs.swift.org/browse/SR-1516))
-* Review manager: [Chris Lattner](http://github.com/lattner)
-* Revision: 4
-* Previous Revisions: [1][rev-1], [2][rev-2], [3][rev-3]
-
-[rev-1]: https://github.com/apple/swift-evolution/blob/b39d653f7e3d5e982b562664343f26c826652291/proposals/0045-scan-takewhile-dropwhile.md
-[rev-2]: https://github.com/apple/swift-evolution/blob/baec22a8a5ddaa0407086380da32b5cad2144800/proposals/0045-scan-takewhile-dropwhile.md
-[rev-3]: https://github.com/apple/swift-evolution/blob/d709546002e1636a10350d14da84eb9e554c3aac/proposals/0045-scan-takewhile-dropwhile.md
+* Review Manager: [Chris Lattner](http://github.com/lattner)
+* Status: **Implemented (Swift 3.1)**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-May/000136.html)
+* Bug: [SR-1516](https://bugs.swift.org/browse/SR-1516)
+* Previous Revisions: [1](https://github.com/apple/swift-evolution/blob/b39d653f7e3d5e982b562664343f26c826652291/proposals/0045-scan-takewhile-dropwhile.md), [2](https://github.com/apple/swift-evolution/blob/baec22a8a5ddaa0407086380da32b5cad2144800/proposals/0045-scan-takewhile-dropwhile.md), [3](https://github.com/apple/swift-evolution/blob/d709546002e1636a10350d14da84eb9e554c3aac/proposals/0045-scan-takewhile-dropwhile.md)
 
 ## Introduction
 
@@ -18,7 +15,9 @@ overrides as appropriate on `Collection`, `LazySequenceProtocol`, and
 `LazyCollectionProtocol`.
 
 Swift-evolution thread:
-[Proposal: Add scan, takeWhile, dropWhile, and iterate to the stdlib](http://thread.gmane.org/gmane.comp.lang.swift.evolution/1515)
+[Proposal: Add scan, takeWhile, dropWhile, and iterate to the stdlib](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160229/011923.html)
+
+[Review](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160425/016036.html)
 
 ## Motivation
 
@@ -35,12 +34,10 @@ protocol Sequence {
   // ...
   /// Returns a subsequence by skipping elements while `predicate` returns
   /// `true` and returning the remainder.
-  @warn_unused_result
-  func drop(@noescape while predicate: (Self.Iterator.Element) throws -> Bool) rethrows -> Self.SubSequence
+  func drop(while predicate: (Self.Iterator.Element) throws -> Bool) rethrows -> Self.SubSequence
   /// Returns a subsequence containing the initial elements until `predicate`
   /// returns `false` and skipping the remainder.
-  @warn_unused_result
-  func prefix(@noescape while predicate: (Self.Iterator.Element) throws -> Bool) rethrows -> Self.SubSequence
+  func prefix(while predicate: (Self.Iterator.Element) throws -> Bool) rethrows -> Self.SubSequence
 }
 ```
 
@@ -64,10 +61,8 @@ extension Sequence where
   SubSequence.Iterator.Element == Iterator.Element,
   SubSequence.SubSequence == SubSequence {
 
-  @warn_unused_result
-  public func drop(@noescape while predicate: (Self.Iterator.Element) throws -> Bool) rethrows -> AnySequence<Self.Iterator.Element>
-  @warn_unused_result
-  public func prefix(@noescape while predicate: (Self.Iterator.Element) throws -> Bool) rethrows -> AnySequence<Self.Iterator.Element>
+  public func drop(while predicate: (Self.Iterator.Element) throws -> Bool) rethrows -> AnySequence<Self.Iterator.Element>
+  public func prefix(while predicate: (Self.Iterator.Element) throws -> Bool) rethrows -> AnySequence<Self.Iterator.Element>
 }
 ```
 
@@ -80,8 +75,8 @@ Provide default implementations on `Collection` as well:
 
 ```swift
 extension Collection {
-  func drop(@noescape while predicate: (Self.Iterator.Element) throws -> Bool) rethrows -> Self.SubSequence
-  func prefix(@noescape while predicate: (Self.Iterator.Element) throws -> Bool) rethrows -> Self.SubSequence
+  func drop(while predicate: (Self.Iterator.Element) throws -> Bool) rethrows -> Self.SubSequence
+  func prefix(while predicate: (Self.Iterator.Element) throws -> Bool) rethrows -> Self.SubSequence
 }
 ```
 
@@ -155,4 +150,4 @@ and `unfold(_:applying:)` (see [revision 3][rev-3]). This proposal was partially
 accepted, with `scan(_:combine:)` rejected on grounds of low utility and
 `unfold(_:applying:)` rejected on grounds of poor naming (see [rationale][]).
 
-[rationale]: http://article.gmane.org/gmane.comp.lang.swift.evolution/16119
+[rationale]: <https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160502/016543.html>

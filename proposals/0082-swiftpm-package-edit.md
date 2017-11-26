@@ -1,9 +1,10 @@
 # Package Manager Editable Packages
 
-* Proposal: SE-0082
+* Proposal: [SE-0082](0082-swiftpm-package-edit.md)
 * Author: [Daniel Dunbar](https://github.com/ddunbar)
-* Status: **Accepted for Swift 3** ([Rationale](http://thread.gmane.org/gmane.comp.lang.swift.evolution/16614))
-* Review manager: [Anders Bertelrud](https://github.com/abertelrud)
+* Review Manager: [Anders Bertelrud](https://github.com/abertelrud)
+* Status: **Implemented (Swift 3.1)**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160509/017038.html)
 
 ## Introduction
 
@@ -14,9 +15,9 @@ those sources, and add a new feature for allowing iterative development. These
 features are tightly interrelated, which is why they are combined into one
 proposal.
 
-[Proposal Announcement](http://thread.gmane.org/gmane.comp.lang.swift.evolution/15279)
+[Proposal Announcement](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160425/015686.html)
 
-[Review announcement](http://thread.gmane.org/gmane.comp.lang.swift.evolution/16078)
+[Review announcement](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160502/016502.html)
 
 
 ## Motivation
@@ -80,7 +81,7 @@ Our proposed solution is as follows:
 
    If a such an editable package is present in `Packages`, then `swift build`
    will always use the exact sources in this directory to build, regardless of
-   it's state, git repository status, tags, or the tag desired by dependency
+   its state, git repository status, tags, or the tag desired by dependency
    resolution. In other words, this will "just build" against the sources that
    are present.
 

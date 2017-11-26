@@ -1,9 +1,11 @@
 # Generic Type Aliases
 
-* Proposal: [SE-0048: Generic Type Aliases](0048-generic-typealias.md)
+* Proposal: [SE-0048](0048-generic-typealias.md)
 * Author: [Chris Lattner](https://github.com/lattner)
-* Status: **Implemented in Swift 3** ([Rationale](http://thread.gmane.org/gmane.comp.lang.swift.evolution/14516/))
-* Review manager: [Doug Gregor](https://github.com/DougGregor)
+* Review Manager: [Doug Gregor](https://github.com/DougGregor)
+* Status: **Implemented (Swift 3)**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-April/000098.html)
+
 
 ## Introduction
 
@@ -49,7 +51,7 @@ typealias DictionaryOfStrings<T>  = Dictionary<T, String>
   // error: type 'T' does not conform to protocol 'Hashable'
 ```
 
-However, because this proposal is targetted at supporting aliases, it does not
+However, because this proposal is targeted at supporting aliases, it does not
 allow *additional* constraints to be added to type parameters.  For example, you
 can't write:
 

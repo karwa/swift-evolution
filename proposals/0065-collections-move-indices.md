@@ -1,19 +1,12 @@
 # A New Model for Collections and Indices
 
-* Proposal: [SE-0065](https://github.com/apple/swift-evolution/blob/master/proposals/0065-collections-move-indices.md)
-* Authors: [Dmitri Gribenko](https://github.com/gribozavr),
-  [Dave Abrahams](https://github.com/dabrahams),
-  [Maxim Moiseev](https://github.com/moiseev)
-* [Swift-evolution thread](http://news.gmane.org/find-root.php?message_id=CA%2bY5xYfqKR6yC2Q%2dG7D9N7FeY%3dxs1x3frq%3d%3dsyGoqYpOcL9yrw%40mail.gmail.com)
-* Status: **Accepted** ([Rationale](http://thread.gmane.org/gmane.comp.lang.swift.evolution/15549))
-* Review manager: [Chris Lattner](https://github.com/lattner)
-* Revision: 5
-* Previous Revisions:
-  [1](https://github.com/apple/swift-evolution/blob/21fac2e8034e79e4f44c1c8799808fc8cba83395/proposals/0065-collections-move-indices.md)
-  (as submitted for review),
-  [2](https://github.com/apple/swift-evolution/blob/1a821cf7ccbdf1d7566e9ce2e991bdd835ba3b7d/proposals/0065-collections-move-indices.md),
-  [3](https://github.com/apple/swift-evolution/blob/d44c3e7c189ba39ddf8a914ae8b78b71f88fdcdf/proposals/0065-collections-move-indices.md)
-  [4](https://github.com/apple/swift-evolution/blob/57639040dc08d2f0b16d9bda527db069589b58d1/proposals/0065-collections-move-indices.md)
+* Proposal: [SE-0065](0065-collections-move-indices.md)
+* Authors: [Dmitri Gribenko](https://github.com/gribozavr), [Dave Abrahams](https://github.com/dabrahams), [Maxim Moiseev](https://github.com/moiseev)
+* Review Manager: [Chris Lattner](https://github.com/lattner)
+* Status: **Implemented (Swift 3)**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-April/000115.html), [Swift-evolution thread](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160229/011552.html)
+* Implementation: [apple/swift#2108](https://github.com/apple/swift/pull/2108)
+* Previous Revisions: [1](https://github.com/apple/swift-evolution/blob/21fac2e8034e79e4f44c1c8799808fc8cba83395/proposals/0065-collections-move-indices.md), [2](https://github.com/apple/swift-evolution/blob/1a821cf7ccbdf1d7566e9ce2e991bdd835ba3b7d/proposals/0065-collections-move-indices.md), [3](https://github.com/apple/swift-evolution/blob/d44c3e7c189ba39ddf8a914ae8b78b71f88fdcdf/proposals/0065-collections-move-indices.md), [4](https://github.com/apple/swift-evolution/blob/57639040dc08d2f0b16d9bda527db069589b58d1/proposals/0065-collections-move-indices.md)
 
 ## Summary
 

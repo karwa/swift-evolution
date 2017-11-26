@@ -2,8 +2,9 @@
 
 * Proposal: [SE-0083](0083-remove-bridging-from-dynamic-casts.md)
 * Author: [Joe Groff](https://github.com/jckarter)
-* Status: **Deferred** ([Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-May/000173.html))
-* Review manager: [Chris Lattner](http://github.com/lattner)
+* Review Manager: [Chris Lattner](http://github.com/lattner)
+* Status: **Deferred**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-May/000173.html)
 
 ## Introduction
 
@@ -33,7 +34,7 @@ pieces in the language, the compiler, and the runtime:
   between Swift value types and their analogous classes. We've been working on
   phasing the implicit conversions out--we removed the object-to-value implicit
   conversion in Swift 1.2, and propose to remove the other direction in
-  [SE-0072](https://github.com/apple/swift-evolution/blob/master/proposals/0072-eliminate-implicit-bridging-conversions.md)
+  [SE-0072](0072-eliminate-implicit-bridging-conversions.md)
   --but the conversions can still be performed by an *explicit coercion*
   `string as NSString`. These required-explicit `as` coercions don't otherwise
   exist in the language, since `as` generally is used to force coercions that
@@ -330,7 +331,7 @@ the bridging conversions have to be failable, since not every element type
 is bridgeable, and the Objective-C classes come into Swift as untyped
 containers. (That may change if we're able to extend the Objective-C generics
 importer support from
-[SE-0057](https://github.com/apple/swift-evolution/blob/master/proposals/0057-importing-objc-generics.md)
+[SE-0057](0057-importing-objc-generics.md)
 to apply to Cocoa container classes, though bridging support makes that
 challenging.)
 
@@ -452,11 +453,3 @@ If one wanted to get really reductionist, they could ask whether `as?` and
 related operations really need special syntax at all; they could in theory
 be fully expressed as global functions, or as extension methods on
 `Any`/`AnyObject` if we allowed such things.
-
--------------------------------------------------------------------------------
-
-# Rationale
-
-On Smarch 13, 20XX, the core team decided to **(TBD)** this proposal.
-When the core team makes a decision regarding this proposal,
-their rationale for the decision will be written here.

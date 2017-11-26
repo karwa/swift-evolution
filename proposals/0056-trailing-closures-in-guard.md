@@ -2,8 +2,9 @@
 
 * Proposal: [SE-0056](0056-trailing-closures-in-guard.md)
 * Author: [Chris Lattner](https://github.com/lattner)
-* Status: **Rejected** ([Rationale](#rationale))
 * Review Manager: [Doug Gregor](https://github.com/DougGregor)
+* Status: **Rejected**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-April/000108.html)
 
 ## Introduction and Motivation
 
@@ -104,9 +105,7 @@ switch expr among { code }
    has some disadvantages: it takes a new keyword (`then`), it diverges
    unnecessarily from the rest of the C family of languages.
 
--------------------------------------------------------------------------------
-
-# Rationale
+## Rationale
 
 On April 20, 2016, the core team decided to **reject** this
 proposal. The core team felt that the benefits from this change were

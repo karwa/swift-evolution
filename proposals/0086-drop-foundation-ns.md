@@ -1,25 +1,27 @@
 # Drop NS Prefix in Swift Foundation
 
-* Proposal: [SE-0086](https://github.com/apple/swift-evolution/blob/master/proposals/0086-drop-foundation-ns.md)
-* Authors: Tony Parker <anthony.parker@apple.com>, Philippe Hausler <phausler@apple.com>
-* Status: **Under Review** (May 9...16, 2016)
-* Review manager:  [Doug Gregor](https://github.com/DougGregor)
+* Proposal: [SE-0086](0086-drop-foundation-ns.md)
+* Authors: [Tony Parker](https://github.com/parkera), [Philippe Hausler](https://github.com/phausler)
+* Review Manager: [Doug Gregor](https://github.com/DougGregor)
+* Status: **Implemented (Swift 3)**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-July/000229.html)
 
 ##### Related radars or Swift bugs
 
-* [SE-0069](https://github.com/apple/swift-evolution/blob/master/proposals/0069-swift-mutability-for-foundation.md): Swift Mutability for Foundation
+* [SE-0069](0069-swift-mutability-for-foundation.md): Swift Mutability for Foundation
 
 ##### Revision history
 
 * **v1** Initial version
+* **v2** Updated with feedback, additional rules. Change to keep NS on future value types.
 
 ## Introduction
 
 As part of _Swift 3 API Naming_ and the introduction of _Swift Core Libraries_, we are dropping the `NS` prefix from key Foundation types in Swift.
 
-[Swift Evolution Discussion Thread](http://thread.gmane.org/gmane.comp.lang.swift.evolution/16298)
+[Swift Evolution Discussion Thread](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160502/016723.html)
 
-[Review Thread](http://thread.gmane.org/gmane.comp.lang.swift.evolution/16509)
+[Review Thread](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160509/016934.html)
 
 ## Motivation
 
@@ -36,28 +38,35 @@ We believe that the best way to establish these libraries as _fundamental_ and _
 The first step was establishing naming conventions:
 
 * [Swift 3 API Naming Guidelines](https://swift.org/documentation/api-design-guidelines/)
-* [SE-0023: API Design Guidelines](https://github.com/apple/swift-evolution/blob/master/proposals/0023-api-guidelines.md)
+* [SE-0023: API Design Guidelines](0023-api-guidelines.md)
 
 The second step was adjusting standard library API and importing the Cocoa SDK according to those conventions:
 
-* [SE-0006: Apply API Guidelines to the Standard Library](https://github.com/apple/swift-evolution/blob/master/proposals/0006-apply-api-guidelines-to-the-standard-library.md)
-* [SE-0005: Better Translation of Objective-C APIs Into Swift](https://github.com/apple/swift-evolution/blob/master/proposals/0005-objective-c-name-translation.md)
+* [SE-0006: Apply API Guidelines to the Standard Library](0006-apply-api-guidelines-to-the-standard-library.md)
+* [SE-0005: Better Translation of Objective-C APIs Into Swift](0005-objective-c-name-translation.md)
 
 The next step is to adjust the API of the Swift Core Libraries. This proposal is focused on **swift-corelibs-foundation**.
 
-In addition to adopting the guidelines for method names, the names of the fundamental types should follow the spirit of the guidelines too. The type names should be clear, concise, and omit needless words or prefixes. In combination with adopting Swift semantics for many of these types ([SE-0069](https://github.com/apple/swift-evolution/blob/master/proposals/0069-swift-mutability-for-foundation.md)), and continued improvement to the implementations, this will make core library API feel like it belongs to the Swift language instead of like a foreign invader.
+In addition to adopting the guidelines for method names, the names of the fundamental types should follow the spirit of the guidelines too. The type names should be clear, concise, and omit needless words or prefixes. In combination with adopting Swift semantics for many of these types ([SE-0069](0069-swift-mutability-for-foundation.md)), and continued improvement to the implementations, this will make core library API feel like it belongs to the Swift language instead of like a foreign invader.
 
 > Note: All changes proposed are for Swift only; Objective-C has no change.
 
 ## Proposed solution
 
-We propose the following set of rules for deciding if the `NS` prefix should be dropped:
+We propose the following set of rules for deciding if the `NS` prefix should be dropped for current types, and for new types added in the future:
 
 0. If the class is specifically for Objective-C, or inherently tied to the Objective-C runtime and `NS` namespace, keep `NS` prefix. Examples: `NSObject`, `NSAutoreleasePool`, `NSException`, `NSProxy`.
 0. If the class is platform-specific, keep the `NS` prefix. Many of these types are located in Foundation, but actually belong to the namespace of a higher-level framework like AppKit or UIKit. The higher level frameworks are keeping their prefixes, so these types should match. Examples: `NSUserNotification`, `NSBackgroundActivity`, `NSXPCConnection`.
-0. If the class has a value-type equivalent, then keep the `NS` prefix, per [SE-0069](https://github.com/apple/swift-evolution/blob/master/proposals/0069-swift-mutability-for-foundation.md). Examples: `NSArray`, `NSString`, `NSPersonNameComponents`. 
+0. If the class has a value-type equivalent, then keep the `NS` prefix, per [SE-0069](0069-swift-mutability-for-foundation.md). Examples: `NSArray`, `NSString`, `NSPersonNameComponents`.
 
-> Note: As opposed to the original proposal from the beginning of Swift 3, this proposal narrows the scope of prefix-dropped types and takes advantage of Swift's ability to nest types to avoid polluting the global namespace with very general names.
+We have an additional set of rules which we want to apply to the set of existing classes only. We recognize the unique transition that we are currently undergoing and want to take advantage of this opportunity in some specific cases.
+
+0. If the class is planned to have a value-type equivalent in the near future, then keep the `NS` prefix. Examples: `NSAttributedString`, `NSRegularExpression`, `NSPredicate`.
+0. The `NSLock` family of classes and protocols will likely be revisited as part of the general concurrency effort in the next release of Swift. Therefore we will keep the NS prefix.
+0. Additional collection types that are implemented in Foundation are usually generic over objects only and not the `Any` type. We intend to fix this, but the transition will likely also involve these collections becoming a struct type themselves. This is related to the "Specific to Objective-C" rule, as Objective-C collections could only contain objects. Examples: `NSCache`, `NSMapTable`, `NSHashTable`, `NSOrderedSet`.
+0. A few types are dropping the prefix but also changing names to something more descriptive of its desired role. Examples: `NSTask` -> `Process`.
+
+It is important to note that the primary decision of dropping the `NS` is related to the type itself (including its name and if it is a `struct` or `class`). Some types have methods and properties which can be improved for Swift. We intend to fix those on a case-by-case basis, even if the name of the type is dropping the `NS`.
 
 ## Detailed design
 
@@ -67,26 +76,14 @@ The following types and symbols will drop their `NS` prefix in Swift.
 
 Objective-C Name | Swift Name | Note
 ---------- | ---------- | ----
-NSAttributedString | AttributedString | See note at bottom about future value types
 NSBlockOperation | BlockOperation |
 NSBundle | Bundle |
 NSByteCountFormatter | ByteCountFormatter |
-NSCache | Cache |
-NSCacheDelegate | CacheDelegate |
 NSCachedURLResponse | CachedURLResponse |
-NSCalendar | Calendar |
-NSComparisonPredicate | ComparisonPredicate |
 NSComparisonResult | ComparisonResult |
-NSCompoundPredicate | CompoundPredicate |
-NSCoder | Coder |
-NSCoding | Coding |
-NSCondition | Condition |
-NSConditionLock | ConditionLock |
 NSDateComponentsFormatter | DateComponentsFormatter |
 NSDateFormatter | DateFormatter |
 NSDateIntervalFormatter | DateIntervalFormatter |
-NSDiscardableContent | DiscardableContent |
-NSDistributedLock | DistributedLock |
 NSDistributedNotificationCenter | DistributedNotificationCenter |
 NSEnergyFormatter | EnergyFormatter |
 NSFileHandle | FileHandle |
@@ -94,25 +91,15 @@ NSFileManager | FileManager |
 NSFileManagerDelegate | FileManagerDelegate |
 NSFileWrapper | FileWrapper |
 NSFormatter | Formatter |
-NSHashTable | HashTable |
 NSHost | Host |
 NSHTTPCookie | HTTPCookie |
 NSHTTPCookieStorage | HTTPCookieStorage |
 NSHTTPURLResponse | HTTPURLResponse |
 NSInputStream | InputStream |
 NSJSONSerialization | JSONSerialization |
-NSKeyedArchiver | KeyedArchiver |
-NSKeyedArchiverDelegate | KeyedArchiverDelegate |
-NSKeyedUnarchiver | KeyedUnarchiver |
-NSKeyedUnarchiverDelegate | KeyedUnarchiverDelegate |
 NSLengthFormatter | LengthFormatter |
-NSLocale | Locale |
-NSLock | Lock |
-NSLocking | Locking |
-NSMapTable | MapTable |
 NSMassFormatter | MassFormatter |
 NSMessagePort | MessagePort |
-NSMutableURLRequest | MutableURLRequest |
 NSNetService | NetService |
 NSNetServiceBrowser | NetServiceBrowser |
 NSNetServiceBrowserDelegate | NetServiceBrowserDelegate |
@@ -124,36 +111,26 @@ NSNumberFormatter | NumberFormatter |
 NSOperatingSystemVersion | OperatingSystemVersion |
 NSOperation | Operation |
 NSOperationQueue | OperationQueue |
-NSOutputStream | OutputStream | The Swift standard library has a type named `OutputStream` which will be renamed to `OutputStreamable`.
+NSOutputStream | OutputStream | The Swift standard library has a type named `OutputStream` which will be renamed to `TextOutputStream`.
 NSPersonNameComponentsFormatter | PersonNameComponentsFormatter |
 NSPipe | Pipe |
-NSPointerArray | PointerArray |
-NSPointerFunctions | PointerFunctions |
 NSPort | Port |
 NSPortDelegate | PortDelegate |
 NSPortMessage | PortMessage |
-NSPredicate | Predicate |
 NSProcessInfo | ProcessInfo |
 NSProgress | Progress |
 NSProgressReporting | ProgressReporting |
 NSPropertyListSerialization | PropertyListSerialization |
-NSPurgeableData | PurgeableData |
 NSQualityOfService | QualityOfService |
-NSRecursiveLock | RecursiveLock |
-NSRegularExpression | RegularExpression |
 NSRunLoop | RunLoop |
 NSScanner | Scanner |
-NSSocketNativeHandle | SocketNativeHandle |
 NSSocketPort | SocketPort |
-NSSortDescriptor | SortDescriptor |
 NSStream | Stream |
 NSStreamDelegate | StreamDelegate |
-NSTask | Task |
-NSTextCheckingResult | TextCheckingResult |
+NSTask | Process | The standard library has a `Process` type. `ProcessInfo` will subsume the argument-fetching functionality from that `enum`, which will be removed. In the future, we will likely sink the basic `ProcessInfo` class into the standard library. |
 NSThread | Thread |
 NSTimeInterval | TimeInterval |
 NSTimer | Timer |
-NSTimeZone | TimeZone |
 NSUndoManager | UndoManager |
 NSURLAuthenticationChallenge | URLAuthenticationChallenge |
 NSURLAuthenticationChallengeSender | URLAuthenticationChallengeSender |
@@ -184,7 +161,7 @@ NSXMLDTDNode | XMLDTDNode |
 NSXMLElement | XMLElement |
 NSXMLNode | XMLNode |
 NSXMLParser | XMLParser |
-NSXMLParserDelegate | XMLParserDelegate | 
+NSXMLParserDelegate | XMLParserDelegate |
 
 ### Hoisted types
 
@@ -263,6 +240,7 @@ NSRegularExpressionOptions | RegularExpression.Options |
 NSRelativePosition | NSRelativeSpecifier.RelativePosition |
 NSSearchPathDirectory | FileManager.SearchPathDirectory |
 NSSearchPathDomainMask | FileManager.SearchPathDomainMask |
+NSSocketNativeHandle | Socket.NativeHandle |
 NSStreamEvent | Stream.Event |
 NSStreamStatus | Stream.Status |
 NSStringCompareOptions | NSString.CompareOptions | Also on `String`. See below for more information.
@@ -281,6 +259,7 @@ NSURLRequestNetworkServiceType | URLRequest.NetworkServiceType |
 NSURLSessionAuthChallengeDisposition | URLSession.AuthChallengeDisposition |
 NSURLSessionResponseDisposition | URLSession.ResponseDisposition |
 NSURLSessionTaskState | URLSessionTask.State |
+NSURLSessionTaskMetricsResourceFetchType | URLSessionTaskMetrics.ResourceFetchType |
 NSUserNotificationActivationType | NSUserNotification.ActivationType |
 NSVolumeEnumerationOptions | FileManager.VolumeEnumerationOptions |
 NSWhoseSubelementIdentifier | NSWhoseSpecifier.SubelementIdentifier |
@@ -326,7 +305,7 @@ extension ComparisonPredicate {
         public static var diacriticInsensitive: ComparisonPredicate.Options { get }
         public static var normalized: ComparisonPredicate.Options { get }
     }
-    
+
     public enum Modifier : UInt {
         case direct
         case all
@@ -491,7 +470,7 @@ extension String {
 	public struct Encoding : RawRepresentable {
 		public var rawValue: UInt
 		public init(rawValue: UInt)
-		
+
 		public static var ascii { get }
 		public static var nextstep { get }
 		public static var japaneseEUC { get }
@@ -528,20 +507,3 @@ All Swift projects will have to run through a migration step to use the new name
 ### Drop every `NS` in Foundation
 
 We considered simply dropping the prefix from all types. However, this would cause quite a few conflicts with standard library types. Also, although Foundation's framework boundary is an easy place to programmatically draw the line for the drop-prefix behavior, the reality is that Foundation has API that feels like it belongs to higher level frameworks as well. We believe this approach better identifies the best candidates for dropping the prefix.
-
-### Keep `NS` on future value types
-
-While it is tempting to consider leaving the `NS` prefix on some names to "leave room" for future types, we believe we can instead mitigate any issue of possible future conflict with a variety of techniques. There are clear benefits for this proposal today: 
-
-* We have a consistent set of rules about which types keep the prefix and which ones drop it. 
-* There is no requirement to attempt prediction of all potential future API. Even seemingly straightforward changes now may take on a different shape given future language improvements or lessons learned.
-* We believe the Foundation library and API adds real value today, and supports the goals outlined for the `corelibs` project.
-
-If, in the future, a time comes when we wish to introduce a new concept that may want to use an unprefixed Foundation name, we have many options available to us:
-
-* Code migration
-* Extend existing name with new API
-* Deprecation of existing name and replacement with new name
-* Use a different name
-
-We have used all of these techniques successfully in the past for Objective-C and Swift API.

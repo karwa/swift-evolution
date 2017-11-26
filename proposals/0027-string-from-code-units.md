@@ -1,9 +1,10 @@
 # Expose code unit initializers on String
 
-* Proposal: [SE-0027](https://github.com/apple/swift-evolution/blob/master/proposals/0027-string-from-code-units.md)
+* Proposal: [SE-0027](0027-string-from-code-units.md)
 * Author: [Zachary Waldowski](https://github.com/zwaldowski)
-* Status: **Rejected** ([Rationale](http://thread.gmane.org/gmane.comp.lang.swift.evolution/7695))
-* Review manager: [Doug Gregor](https://github.com/DougGregor)
+* Review Manager: [Doug Gregor](https://github.com/DougGregor)
+* Status: **Rejected**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-February/000044.html)
 
 ## Introduction
 
@@ -19,7 +20,7 @@ After reading through stdlib source and doing my own testing, this is no wives' 
 
 Of course, `fromCString(_:)` isn't a silver bullet; it forces a UTF-8 encoding with a null sentinel, requiring either a copy of the origin buffer or regressing to the much slower character-by-character append path if a terminator needs to be added. This is the case with formats that specify the length up front, or unstructured payloads that use another terminator). It also prevents the string itself from containing the null character. Finally, the `fromCString(_:)` constructor requires a call to `strlen`, even if that's already been calculated in users' code.
 
-# Proposed solution
+## Proposed solution
 
 I'd like to expose an equivalent to `String.Type._fromCodeUnitSequence(_:input:)` as public API:
 

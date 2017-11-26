@@ -1,9 +1,11 @@
 # Establish consistent label behavior across all parameters including first labels
 
-* Proposal: [SE-0046](https://github.com/apple/swift-evolution/blob/master/proposals/0046-first-label.md)
+* Proposal: [SE-0046](0046-first-label.md)
 * Authors: [Jake Carter](https://github.com/JakeCarter), [Erica Sadun](http://github.com/erica)
-* Status: **Accepted** ([Rationale](http://thread.gmane.org/gmane.comp.lang.swift.evolution/12352), [Bug](https://bugs.swift.org/browse/SR-961))
-* Review manager: [Chris Lattner](https://github.com/lattner)
+* Review Manager: [Chris Lattner](https://github.com/lattner)
+* Status: **Implemented (Swift 3)**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-March/000067.html)
+* Bug: [SR-961](https://bugs.swift.org/browse/SR-961)
 
 ## Introduction
 We propose to normalize the first parameter declaration in methods 
@@ -15,7 +17,7 @@ declaration throughout the Swift programming language and bring
 method and function declarations in-sync with initializers, which
 already use this standard.
 
-*Discussion took place on the Swift Evolution mailing list in the [Make the first parameter in a function declaration follow the same rules as the others](http://article.gmane.org/gmane.comp.lang.swift.evolution/9029) thread.*
+*Discussion took place on the Swift Evolution mailing list in the [Make the first parameter in a function declaration follow the same rules as the others](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160307/012209.html) thread.*
 
 ## Motivation
 In the current state of the art, Swift 2 methods and functions combine local and external names to
@@ -38,7 +40,7 @@ For the most part, Swift 2 developers were encouraged to mimic this approach and
 that moved the label name out of the parameter list and into the function or method name.
 
 Swift 3's newly accepted [API naming guidelines](https://swift.org/documentation/api-design-guidelines/) 
-shook up this approach. They more thoroughly embraced method and function first argument labels.  The updated naming guidance is further supported by the [automated Objective-C API translation rules](https://github.com/apple/swift-evolution/blob/master/proposals/0005-objective-c-name-translation.md)
+shook up this approach. They more thoroughly embraced method and function first argument labels.  The updated naming guidance is further supported by the [automated Objective-C API translation rules](0005-objective-c-name-translation.md)
 recently accepted for Swift 3. Under these revised guidelines, first argument labels are encouraged for 
 but are not limited to:
 

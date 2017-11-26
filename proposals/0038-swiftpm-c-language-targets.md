@@ -1,9 +1,12 @@
 # Package Manager C Language Target Support
 
-* Proposal: [SE-0038](https://github.com/apple/swift-evolution/blob/master/proposals/0038-swiftpm-c-language-targets.md)
+* Proposal: [SE-0038](0038-swiftpm-c-language-targets.md)
 * Author: [Daniel Dunbar](https://github.com/ddunbar)
-* Status: **Accepted** ([Bug](https://bugs.swift.org/browse/SR-821))
-* Review manager: Rick Ballard
+* Review Manager: [Rick Ballard](https://github.com/rballard)
+* Status: **Implemented (Swift 3)**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160222/011097.html)
+* Bug: [SR-821](https://bugs.swift.org/browse/SR-821)
+
 
 ## Introduction
 
@@ -13,7 +16,7 @@ languages). This proposal is limited in scope to only supporting targets
 consisting entirely of C languages; there is no provision for supporting targets
 which include both C and Swift sources.
 
-[Swift Evolution Review Thread](http://thread.gmane.org/gmane.comp.lang.swift.evolution/7293)
+[Swift Evolution Review Thread](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160215/010470.html)
 
 ## Motivation
 
@@ -108,7 +111,7 @@ addressed with this proposal:
 
 2. No provision is made in this proposal for controlling compiler arguments. We
    will support the existing debug and release configurations using a fixed set
-   of compiler flags. We expect future proposals to accomodate the need to
+   of compiler flags. We expect future proposals to accommodate the need to
    modify those flags.
 
 3. We intend for the feature to be built in such a way as to support any

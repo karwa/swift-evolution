@@ -1,9 +1,11 @@
 # Referencing the Objective-C selector of a method
 
-* Proposal: [SE-0022](https://github.com/apple/swift-evolution/blob/master/proposals/0022-objc-selectors.md)
+* Proposal: [SE-0022](0022-objc-selectors.md)
 * Author: [Doug Gregor](https://github.com/DougGregor)
-* Status: **Accepted** ([Rationale](http://thread.gmane.org/gmane.comp.lang.swift.evolution/4622))
-* Review manager: [Joe Groff](https://github.com/jckarter)
+* Review Manager: [Joe Groff](https://github.com/jckarter)
+* Status: **Implemented (Swift 2.2)**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160125/007797.html)
+* Implementation: [apple/swift#1170](https://github.com/apple/swift/pull/1170)
 
 ## Introduction
 
@@ -13,7 +15,7 @@ In Swift 2, Objective-C selectors are written as string literals
 with `Selector` initialization syntax that refers to a specific method
 via its Swift name.
 
-Swift-evolution thread: [here](http://thread.gmane.org/gmane.comp.lang.swift.evolution/1384/focus=1403)
+Swift-evolution thread: [here](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160111/006282.html), [Review](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160118/006913.html), [Amendments after acceptance](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160523/018698.html)
 
 ## Motivation
 
@@ -22,7 +24,7 @@ error-prone: there is no checking that the string is even a
 well-formed selector, much less that it refers to any known method, or
 a method of the intended class. Moreover, with the effort to perform
 [automatic renaming of Objective-C
-APIs](https://github.com/apple/swift-evolution/blob/master/proposals/0005-objective-c-name-translation.md),
+APIs](0005-objective-c-name-translation.md),
 the link between Swift name and Objective-C selector is
 non-obvious. By providing explicit "create a selector" syntax based on
 the Swift name of a method, we eliminate the need for developers to

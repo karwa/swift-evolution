@@ -2,8 +2,11 @@
 
 * Proposal: [SE-0103](0103-make-noescape-default.md)
 * Author: [Trent Nadeau](https://github.com/tanadeau)
-* Status: **Active review June 21...27**
-* Review manager: [Chris Lattner](http://github.com/lattner)
+* Review Manager: [Chris Lattner](http://github.com/lattner)
+* Status: **Implemented (Swift 3)**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-June/000204.html)
+* Bug: [SR-1952](https://bugs.swift.org/browse/SR-1952)
+* Previous Revision: [1](https://github.com/apple/swift-evolution/blob/833afd64b5d24a777fe2c42800d4b4dcd52bb487/proposals/0103-make-noescape-default.md)
 
 ## Introduction
 
@@ -13,7 +16,7 @@ This proposal switches the default to be non-escaping and requires an `@escaping
 
 Swift-evolution threads:
 
-* [Make non-escaping closures the default](http://thread.gmane.org/gmane.comp.lang.swift.evolution/19756)
+* [Make non-escaping closures the default](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160530/020181.html)
 
 ## Motivation
 
@@ -39,7 +42,27 @@ The compiler's semantic analysis implementation can be simplified as the more co
 
 The standard library should be changed to use the new default whenever possible by removing all uses of `@noescape` and only adding `@escaping` where the compiler detects the need.
 
-An `asUnsafeEscapingClosure(_:)` helper that will convert a nonescaping closure to an escaping one will be added to the standard library. This helper is useful when a function has a nonescaping closure argument (the closure is called before it returns), but the closure may be used as an argument to a function requiring an escaping closure, such as various `LazySequence` methods.
+A helper that will convert a non-escaping closure to an "escaping" one will be added to the standard library. This helper is useful when a function has a non-escaping closure argument (the closure is called before it returns), but the closure may be used as an argument to a function requiring an escaping closure, such as various `LazySequence` methods. The helper should verify that the closure has not actually escaped and trap if it does. It should have the following signature:
+
+```swift
+func withoutActuallyEscaping<ClosureType, ResultType>(
+    _ closure: ClosureType,
+    do: (fn: @escaping ClosureType) throws -> ResultType) rethrows -> ResultType {
+  // ...
+}
+```
+
+An example of its use:
+
+```swift
+func yourFunction(fn: (Int) -> Int) {  // fn defaults to non-escaping.
+  withoutActuallyEscaping(fn) { fn in  // fn is now marked @escaping inside the closure
+    // ...
+    somearray.lazy.map(fn)             // pass fn to something that is notationally @escaping
+    // ...
+  }
+}
+```
 
 ### Imported C/Objective-C APIs
 
@@ -55,7 +78,7 @@ There should be few, if any, changes required for uses of Cocoa APIs as these wi
 
 ## Future directions
 
-The `@noescape(once)` annotation proposed in [SE-0073](https://github.com/apple/swift-evolution/blob/master/proposals/0073-noescape-once.md) would, if some future version is accepted, just become `@once`.
+The `@noescape(once)` annotation proposed in [SE-0073](0073-noescape-once.md) would, if some future version is accepted, just become `@once`.
 
 ## Alternatives considered
 

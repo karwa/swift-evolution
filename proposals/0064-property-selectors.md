@@ -1,16 +1,18 @@
 # Referencing the Objective-C selector of property getters and setters
 
-* Proposal: [SE-0064](https://github.com/apple/swift-evolution/blob/master/proposals/0064-property-selectors.md)
+* Proposal: [SE-0064](0064-property-selectors.md)
 * Author: [David Hart](https://github.com/hartbit)
-* Status: **Implemented in Swift 3** ([Rationale](http://thread.gmane.org/gmane.comp.lang.swift.evolution/14539/))
-* Review manager: [Doug Gregor](https://github.com/DougGregor)
+* Review Manager: [Doug Gregor](https://github.com/DougGregor)
+* Status: **Implemented (Swift 3)**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-April/000102.html)
+* Bug: [SR-1239](https://bugs.swift.org/browse/SR-1239)
 
 ## Introduction
 
-Proposal [SE-0022](https://github.com/apple/swift-evolution/blob/master/proposals/0022-objc-selectors.md) was accepted and implemented to provide a `#selector` expression to reference Objective-C method selectors. Unfortunately, it does not allow referencing the getter and setter methods of properties. This proposal seeks to provide a design to reference those methods for the Swift 3.0 timeframe.
+Proposal [SE-0022](0022-objc-selectors.md) was accepted and implemented to provide a `#selector` expression to reference Objective-C method selectors. Unfortunately, it does not allow referencing the getter and setter methods of properties. This proposal seeks to provide a design to reference those methods for the Swift 3.0 timeframe.
 
-[Original swift-evolution thread](http://article.gmane.org/gmane.comp.lang.swift.evolution/7614)
-[Follow-up swift-evolution thread](http://thread.gmane.org/gmane.comp.lang.swift.evolution/7780)
+* [Original swift-evolution thread](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160215/010791.html)
+* [Follow-up swift-evolution thread](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160222/010960.html)
 
 ## Motivation
 
@@ -51,5 +53,5 @@ The introduction of the new `#selector` overrides has no impact on existing code
 
 ## Alternatives considered
 
-A long term alternive could arrise from the design of lenses in Swift. But as this is purely hypothetical and out of scope for Swift 3, this proposal fixes the need for referencing property selectors in a type-safe way straight-away.
+A long term alternative could arise from the design of lenses in Swift. But as this is purely hypothetical and out of scope for Swift 3, this proposal fixes the need for referencing property selectors in a type-safe way straight-away.
 

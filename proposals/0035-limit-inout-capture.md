@@ -1,9 +1,12 @@
 # Limiting `inout` capture to `@noescape` contexts
 
-* Proposal: [SE-0035](https://github.com/apple/swift-evolution/blob/master/proposals/0035-limit-inout-capture.md)
+* Proposal: [SE-0035](0035-limit-inout-capture.md)
 * Author: [Joe Groff](https://github.com/jckarter)
-* Status: **Accepted** ([Rationale](http://thread.gmane.org/gmane.comp.lang.swift.evolution/7732), [Bug](https://bugs.swift.org/browse/SR-807))
-* Review manager: [Chris Lattner](https://github.com/lattner)
+* Review Manager: [Chris Lattner](https://github.com/lattner)
+* Status: **Implemented (Swift 3)**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-February/000046.html)
+* Bug: [SR-807](https://bugs.swift.org/browse/SR-807)
+
 
 ## Introduction
 
@@ -11,6 +14,8 @@ Swift's behavior when closures capture `inout` parameters and escape their enclo
 except in `@noescape` closures.
 
 Swift-evolution thread: [only allow capture of inout parameters in @noescape closures](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160125/008074.html)
+
+[Review](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160215/010465.html)
 
 ## Motivation
 
@@ -47,9 +52,9 @@ func captureAndEscape(inout x: Int) -> () -> Void {
 
 var x = 22
 let closure = captureAndEscape(&x)
-print(x) // => 23
+print(x) // => 22
 closure()
-print("still \(x)") // => still 23
+print("still \(x)") // => still 22
 ```
 
 This change has been a persistent source of confusion and bug reports, and was recently
@@ -58,7 +63,7 @@ one in a long line of complaints on the topic.
 
 ## Proposed solution
 
-I propose we make it so that implicitly capturing an `inout` parameter into a escapable
+I propose we make it so that implicitly capturing an `inout` parameter into an escapable
 closure is an error. We added the explicit `@noescape` annotation in Swift 1.2, and have since
 adopted it throughout the standard library where appropriate, so the compromise has outlived
 its usefulness and become a source of confusion.
@@ -138,7 +143,7 @@ For migration, the compiler can offer one of the above fixits, checking the use 
 shadow copy is more appropriate. (Or naively, the fixit can just offer the shadow copy fixit.)
 
 This also increases pressure on libraries to make more use of `@noescape` where possible, as
-proposed in [SE-0012](https://github.com/apple/swift-evolution/blob/master/proposals/0012-add-noescape-to-public-library-api.md).
+proposed in [SE-0012](0012-add-noescape-to-public-library-api.md).
 
 ## Alternatives considered
 

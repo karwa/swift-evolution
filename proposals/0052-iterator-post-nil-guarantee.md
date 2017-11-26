@@ -1,9 +1,11 @@
 # Change IteratorType post-nil guarantee
 
-* Proposal: [SE-0052](https://github.com/apple/swift-evolution/blob/master/proposals/0052-iterator-post-nil-guarantee.md)
+* Proposal: [SE-0052](0052-iterator-post-nil-guarantee.md)
 * Author: [Patrick Pijnappel](https://github.com/PatrickPijnappel)
-* Status: **Accepted for Swift 3** ([Rationale](http://thread.gmane.org/gmane.comp.lang.swift.evolution/16115))
-* Review manager: [Chris Lattner](https://github.com/lattner)
+* Review Manager: [Chris Lattner](https://github.com/lattner)
+* Status: **Implemented (Swift 3)**
+* Decision Notes: [Rationale](https://lists.swift.org/pipermail/swift-evolution-announce/2016-May/000135.html)
+* Implementation: [apple/swift#1702](https://github.com/apple/swift/pull/1702)
 
 ## Introduction
 
@@ -17,9 +19,7 @@ are likely unaware of the precondition, expecting all iterators to return
 code will usually run fine, until someone does in fact pass in an iterator not
 repeating `nil` (it's a silent corner case).
 
-Swift-evolution thread: [\[Proposal\] Change guarantee for GeneratorType.next() to always return nil past end](http://thread.gmane.org/gmane.comp.lang.swift.evolution/8519)
-
-Pull-request: [\#1702](https://github.com/apple/swift/pull/1702)
+Swift-evolution thread: [\[Proposal\] Change guarantee for GeneratorType.next() to always return nil past end](https://lists.swift.org/pipermail/swift-evolution/Week-of-Mon-20160229/011699.html)
 
 ## Motivation
 
@@ -74,10 +74,10 @@ This however kind of defeats the purpose of having an API contract.
 ### Frequency
 In both cases, sometimes code needs to track extra state and branch:
 - **Current:** Callers sometimes need to track a bool and branch. The standard library currently has 3 occurrences of this being necessary ([#1](https://github.com/apple/swift/blob/master/stdlib/public/core/Sequence.swift#L435), [#2](https://github.com/apple/swift/blob/master/stdlib/public/core/Unicode.swift#L128), [#3](https://github.com/apple/swift/blob/master/stdlib/public/core/Unicode.swift#L373)).
-- **Proposed:** Iterator implementations sometimes need to track a bool and branch. The standard library currently has no occurrences of this being necessary. If [SE-0045](https://github.com/apple/swift-evolution/blob/master/proposals/0045-scan-takewhile-dropwhile.md) is accepted, it will introduce the first case (out of 30 iterators), `TakeWhileIterator`.
+- **Proposed:** Iterator implementations sometimes need to track a bool and branch. The standard library currently has no occurrences of this being necessary. If [SE-0045](0045-scan-takewhile-dropwhile.md) is accepted, it will introduce the first case (out of 30 iterators), `TakeWhileIterator`.
 
 ### Performance considerations
-In both cases, the extra state and branching that is sometimes needed has potential for performance implications. Though performance is not the *key* concern, iterators are often used in tight loops and can affect very commonly used algorithms. The original rationale for introducing the precondition was in fact because of concerns it might add storage and performance burden to some implementations of `IteratorType` (see [here](http://article.gmane.org/gmane.comp.lang.swift.evolution/8532)). However in light of implementation experience, it appears including the guarantee would likely be beneficial for performance:
+In both cases, the extra state and branching that is sometimes needed has potential for performance implications. Though performance is not the *key* concern, iterators are often used in tight loops and can affect very commonly used algorithms. The original rationale for introducing the precondition was in fact because of concerns it might add storage and performance burden to some implementations of `IteratorType`. However in light of implementation experience, it appears including the guarantee would likely be beneficial for performance:
 
 - **Current:** Callers sometimes need to track a bool and branch, which can usually not be optimized away. This can be somewhat significant, for example UTF-8 decoding would be ~25% faster on ASCII input with the proposed guarantee (see [here](https://gist.github.com/PatrickPijnappel/3241bba66acab9c8913f)).
 - **Proposed:** Iterator implementations sometimes need to track a bool and branch, which can usually be optimized away when not needed by the caller (e.g. in a `for in` loop). Note that when post-`nil` behavior is relied upon, the caller would have had to track state and branch already if the iterator didn't.
